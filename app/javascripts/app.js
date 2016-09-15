@@ -8,13 +8,13 @@ var requestCreated = false;
 var quotes = [];
 
 
-(function($){
-  $(function(){
+(function($) {
+    $(function() {
 
-    $('.button-collapse').sideNav();
-    $('.parallax').parallax();
+        $('.button-collapse').sideNav();
+        $('.parallax').parallax();
 
-  }); // end of document ready
+    }); // end of document ready
 })(jQuery); // end of jQuery name space
 
 
@@ -37,87 +37,101 @@ function addToQuotes(quote) {
     }
 }
 
-function addQuoteToList ( quote ) {
-  $("#listOfQuotes").append("<li>" + quote.companyName + "-"  + quote.loanAmount + "-" + quote.term + "-" + quote.estimatedRate + "</li>")
+function addQuoteToList(quote) {
+    $("#noQuotes").hide();
+    var first = '<li class="collection-item avatar">';
+    var image = '<img src="images/W301157.jpg" alt="" class="circle">';
+    var title = '<span class="title">' + quote.companyName + '</span>';
+    var details = '<p>Loan amount: ' + numeral(quote.loanAmount).format('$0,0.00') + '<br>Loan term: ' + quote.term + ' months<br>Estimated Rate:' + numeral(quote.estimatedRate * .0001).format('0.000%') + '</p>';
+    var apply = '<a href="#!" class="secondary-content waves-effect waves-light btn orange" <i id="submitButton" class="" >Apply Now</i></a></li>';
+    $("#listOfQuotes2").append(first + image + title + details + apply);
 }
 
 
 function watchForRequests() {
     var meta = MortgageApp.deployed();
-    var intervalId = window.setInterval (
-      function () {
-        meta.getRequest.call(account, {from: account}).then(function(response) {
-          window.clearInterval(intervalId);
-          if (!requestCreated) {
-            requestCreated = true;
-            createQuotes();
-          }
-        }).catch(function(e) {
-         // There was an error! Handle it.
-      })
-    }, 1000);
+    var intervalId = window.setInterval(
+        function() {
+            meta.getRequest.call(account, {
+                from: account
+            }).then(function(response) {
+                window.clearInterval(intervalId);
+                if (!requestCreated) {
+                    requestCreated = true;
+                    createQuotes();
+                }
+            }).catch(function(e) {
+                // There was an error! Handle it.
+            })
+        }, 1000);
 }
 
 
 
 function createQuotes() {
-  deleteQuotes();
+    deleteQuotes();
 
-    generateQuote({requestorAddress: account,
-                    lenderAddress: account1,
-                    companyName: "Principal Real Estate Investors",
-                    loanAmount: 250000,
-                    term: 370,
-                    estimatedRate: 2.5}
-                   , 2000)
+    generateQuote({
+        requestorAddress: account,
+        lenderAddress: account1,
+        companyName: "Principal Real Estate Investors",
+        loanAmount: 250000,
+        term: 370,
+        estimatedRate: 250
+    }, 2000)
 
-    generateQuote({requestorAddress: account,
-                    lenderAddress: account2,
-                    companyName: "Wells Fargo",
-                    loanAmount: 3500000,
-                    term: 350,
-                    estimatedRate: 8.5}
-                   , 4000)
+    generateQuote({
+        requestorAddress: account,
+        lenderAddress: account2,
+        companyName: "Wells Fargo",
+        loanAmount: 3500000,
+        term: 350,
+        estimatedRate: 850
+    }, 4000)
 
-        generateQuote({requestorAddress: account,
-                    lenderAddress: account3,
-                    companyName: "Prudential",
-                    loanAmount: 4500000,
-                    term: 340,
-                    estimatedRate: 3.5}
-                   , 6000)
+    generateQuote({
+        requestorAddress: account,
+        lenderAddress: account3,
+        companyName: "Prudential",
+        loanAmount: 4500000,
+        term: 340,
+        estimatedRate: 350
+    }, 6000)
 
-            generateQuote({requestorAddress: account,
-                    lenderAddress: account1,
-                    companyName: "Adam's Lending Emporium",
-                    loanAmount: 250000000,
-                    term: 12,
-                    estimatedRate: 15.5}
-                   , 500)
+    generateQuote({
+        requestorAddress: account,
+        lenderAddress: account1,
+        companyName: "Adam's Lending Emporium",
+        loanAmount: 250000000,
+        term: 12,
+        estimatedRate: 1550
+    }, 500)
 
-    generateQuote({requestorAddress: account,
-                    lenderAddress: account2,
-                    companyName: "Taco Bell",
-                    loanAmount: 3000000,
-                    term: 200,
-                    estimatedRate: 12.5}
-                   , 1500)
+    generateQuote({
+        requestorAddress: account,
+        lenderAddress: account2,
+        companyName: "Taco Bell",
+        loanAmount: 3000000,
+        term: 200,
+        estimatedRate: 1250
+    }, 1500)
 
-        generateQuote({requestorAddress: account,
-                    lenderAddress: account3,
-                    companyName: "PGI Code Jammers",
-                    loanAmount: 40000,
-                    term: 120,
-                    estimatedRate: 4.5}
-                   , 7500)
+    generateQuote({
+        requestorAddress: account,
+        lenderAddress: account3,
+        companyName: "PGI Code Jammers",
+        loanAmount: 40000,
+        term: 120,
+        estimatedRate: 450
+    }, 7500)
 }
 
 function watchForQuotes() {
     var meta = MortgageApp.deployed();
-    var intervalId = window.setInterval (
-      function () {
-        getCurrentQuotes();
-      }, 2000)
+    var intervalId = window.setInterval(
+        function() {
+            getCurrentQuotes();
+        }, 2000)
 }
 
 function getCurrentQuotes() {
@@ -159,16 +173,15 @@ function deleteQuotes() {
     });
 }
 
-function generateQuote ( quote, timeOut ) {
-      var meta = MortgageApp.deployed();
-      setTimeout(function() {
+function generateQuote(quote, timeOut) {
+    var meta = MortgageApp.deployed();
+    setTimeout(function() {
         meta.submitQuote(quote.requestorAddress, quote.lenderAddress, quote.companyName, quote.loanAmount, quote.term, quote.estimatedRate, {
             from: account
-        }).then(function() {
-        }).catch(function(e) {
+        }).then(function() {}).catch(function(e) {
             console.log(e);
-        })}, timeOut
-    );
+        })
+    }, timeOut);
 }
 
 function apply() {
@@ -221,69 +234,68 @@ window.onload = function() {
 }
 
 
-   // requested loan amount
-    var requestedLoanAmountSlider = document.getElementById('requested-loan-amount-range');
+// requested loan amount
+var requestedLoanAmountSlider = document.getElementById('requested-loan-amount-range');
 
-    noUiSlider.create(requestedLoanAmountSlider, {
-      start: [ 10000000 ],
-      step: 100000,
-      range: {
-        'min': [  10000000 ],
-        'max': [ 50000000 ]
-      }
+noUiSlider.create(requestedLoanAmountSlider, {
+    start: [10000000],
+    step: 100000,
+    range: {
+        'min': [10000000],
+        'max': [50000000]
+    }
+});
+
+var requestedLoanAmountSliderValueElement = document.getElementById('requested-loan-amount-range-value');
+
+requestedLoanAmountSlider.noUiSlider.on('update', function(values, handle) {
+    var requestedLoanAmount = Number(values[handle]).toLocaleString('en-US', {
+        style: 'currency',
+        currency: 'USD'
     });
+    requestedLoanAmountSliderValueElement.innerHTML = requestedLoanAmount;
+});
 
-    var requestedLoanAmountSliderValueElement = document.getElementById('requested-loan-amount-range-value');
 
-    requestedLoanAmountSlider.noUiSlider.on('update', function( values, handle ) {
-      var requestedLoanAmount = Number(values[handle]).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-      requestedLoanAmountSliderValueElement.innerHTML = requestedLoanAmount;
+// estimated property value
+var estimatedPropertyValueSlider = document.getElementById('estimated-property-value-range');
+
+noUiSlider.create(estimatedPropertyValueSlider, {
+    start: [10000000],
+    step: 100000,
+    range: {
+        'min': [10000000],
+        'max': [50000000]
+    }
+});
+
+var estimatedPropertyValueSliderValueElement = document.getElementById('estimated-property-value-range-value');
+
+estimatedPropertyValueSlider.noUiSlider.on('update', function(values, handle) {
+    estimatedPropertyValueSliderValueElement.innerHTML = Number(values[handle]).toLocaleString('en-US', {
+        style: 'currency',
+        currency: 'USD'
     });
+});
 
+requestedLoanAmountSlider.noUiSlider.on('slide', function(values, handle) {
+    var loan_to_value_percent = requestedLoanAmountSlider.noUiSlider.get() / estimatedPropertyValueSlider.noUiSlider.get();
+    $('#loan_to_value').val((loan_to_value_percent * 100).toFixed(2) + "%");
+});
 
-    // requested loan amount
-    var estimatedPropertyValueSlider = document.getElementById('estimated-property-value-range');
+estimatedPropertyValueSlider.noUiSlider.on('slide', function(values, handle) {
+    var loan_to_value_percent = requestedLoanAmountSlider.noUiSlider.get() / estimatedPropertyValueSlider.noUiSlider.get();
+    $('#loan_to_value').val((loan_to_value_percent * 100).toFixed(2) + "%");
+});
 
-    noUiSlider.create(estimatedPropertyValueSlider, {
-      start: [ 10000000 ],
-      step: 100000,
-      range: {
-        'min': [  10000000 ],
-        'max': [ 50000000 ]
-      }
+$(document).ready(function() {
+    $('#property_type').material_select();
+    $('#desired_loan_term').material_select();
+
+    var loan_to_value_percent = requestedLoanAmountSlider.noUiSlider.get() / estimatedPropertyValueSlider.noUiSlider.get();
+    $('#loan_to_value').val((loan_to_value_percent * 100).toFixed(2) + "%");
+
+    $('.scrollspy').scrollSpy({
+        scrollOffset: 100
     });
-
-    var estimatedPropertyValueSliderValueElement = document.getElementById('estimated-property-value-range-value');
-
-    estimatedPropertyValueSlider.noUiSlider.on('update', function( values, handle ) {
-      estimatedPropertyValueSliderValueElement.innerHTML = Number(values[handle]).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-    });
-
-    // requestedLoanAmountSlider.noUiSlider.on('change', function( values, handle ) {
-    //   var loan_to_value_percent = requestedLoanAmountSlider.noUiSlider.get() / estimatedPropertyValueSlider.noUiSlider.get();
-    //   $('#loan_to_value').val(loan_to_value_percent + "%");
-    // });
-
-    requestedLoanAmountSlider.noUiSlider.on('slide', function( values, handle ) {
-      var loan_to_value_percent = requestedLoanAmountSlider.noUiSlider.get() / estimatedPropertyValueSlider.noUiSlider.get();
-      $('#loan_to_value').val((loan_to_value_percent * 100).toFixed(2) + "%");
-    });
-
-  estimatedPropertyValueSlider.noUiSlider.on('slide', function( values, handle ) {
-      var loan_to_value_percent = requestedLoanAmountSlider.noUiSlider.get() / estimatedPropertyValueSlider.noUiSlider.get();
-      $('#loan_to_value').val((loan_to_value_percent * 100).toFixed(2) + "%");
-    });
-
-    $(document).ready(function() {
-      $('#property_type').material_select();
-      $('#desired_loan_term').material_select();
-
-      var loan_to_value_percent = requestedLoanAmountSlider.noUiSlider.get() / estimatedPropertyValueSlider.noUiSlider.get();
-      $('#loan_to_value').val((loan_to_value_percent * 100).toFixed(2) + "%");
-
-      $('.scrollspy').scrollSpy({scrollOffset: 75});
-
-//       $( "#submitButton" ).click(function() {
-//               $("#ourform").css("background-color", "yellow");
-//       });
-    });
+});

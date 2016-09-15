@@ -50,3 +50,11 @@ p {
 footer.page-footer {
   margin: 0;
 }
+
+/* nav ul a, nav .brand-logo {
+  color: #e53935;
+} */
+
+nav i {
+  color: black;
+}

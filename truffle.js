@@ -11,10 +11,10 @@ module.exports = {
     "images/": "images/"
   },
   rpc: {
-     //host: "40.77.98.122",
+     //host: "40.77.103.88",
      //port: 8101,
-       host: "intense-beauty-213268.nitrousapp.com",
-       port: 8081
-       //from: "0x376195d9bdb636b4a6ee80664a846cfe75aa83c5"
+     host: "intense-beauty-213268.nitrousapp.com",
+     port: 8081
+     //from: "0x226fcd430eb344d568dbe3d240817b6675852f0d"
   }
 };

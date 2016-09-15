@@ -41,7 +41,7 @@ function addQuoteToList(quote) {
     var imageName = '';
     var quoteCompanyName = quote.companyName.toString();
 
-    if (quoteCompanyName === "Adam's Lending Emporium") {
+    if (quoteCompanyName == "Adam's Lending Emporium") {
       imageName = 'W301157.jpg';
     }
 
@@ -233,6 +233,7 @@ window.onload = function() {
 
         accounts = accs;
         account = accounts[0];
+        //account = "0x226fcd430eb344d568dbe3d240817b6675852f0d";
         account1 = accounts[1];
         account2 = accounts[2];
         account3 = accounts[3];

@@ -72,9 +72,9 @@ contract MortgageApp {
     return (quote.lenderAddress, quote.companyName, quote.loanAmount, quote.term, quote.estimatedRate);
   }
 
-  function getRequest(address requestorAddress) constant returns (uint, bytes32) {
+  function getRequest(address requestorAddress) constant returns (uint, uint, bytes32) {
     MortgageRequest request = requests[requestorAddress];
-    return ( request.loanAmount, request.propertyType );
+    return ( request.loanAmount, request.loanTerm, request.propertyType );
   }
 
 }

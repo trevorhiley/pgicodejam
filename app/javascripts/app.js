@@ -38,12 +38,19 @@ function addToQuotes(quote) {
 }
 
 function addQuoteToList(quote) {
+    var imageName = 'W301157';
+
+    if (quote.companyName == "Adam's Lending Emporium") {
+      imageName = 'W301157.jpg';
+    }
+
+
     $("#noQuotes").hide();
-    var first = '<li class="collection-item avatar">';
-    var image = '<img src="images/W301157.jpg" alt="" class="circle">';
+    var first = '<li class="collection-item avatar animated slideInLeft">';
+    var image = '<img src="images/"' + imageName + ' alt="" class="circle">';
     var title = '<span class="title">' + quote.companyName + '</span>';
     var details = '<p>Loan amount: ' + numeral(quote.loanAmount).format('$0,0.00') + '<br>Loan term: ' + quote.term + ' months<br>Estimated Rate:' + numeral(quote.estimatedRate * .0001).format('0.000%') + '</p>';
-    var apply = '<a href="#!" class="secondary-content waves-effect waves-light btn orange" <i id="submitButton" class="" >Apply Now</i></a></li>';
+    var apply = '<a href="#!" class="secondary-content waves-effect waves-light btn orange animated infinite pulse" <i id="submitButton" class="" >Apply Now</i></a></li>';
     $("#listOfQuotes2").append(first + image + title + details + apply);
 }
 
@@ -75,7 +82,7 @@ function createQuotes() {
         requestorAddress: account,
         lenderAddress: account1,
         companyName: "Principal Real Estate Investors",
-        loanAmount: 250000,
+        loanAmount: 25000000,
         term: 370,
         estimatedRate: 250
     }, 2000)
@@ -83,8 +90,8 @@ function createQuotes() {
     generateQuote({
         requestorAddress: account,
         lenderAddress: account2,
-        companyName: "Wells Fargo",
-        loanAmount: 3500000,
+        companyName: "The Other Guy",
+        loanAmount: 23000000,
         term: 350,
         estimatedRate: 850
     }, 4000)
@@ -92,8 +99,8 @@ function createQuotes() {
     generateQuote({
         requestorAddress: account,
         lenderAddress: account3,
-        companyName: "Prudential",
-        loanAmount: 4500000,
+        companyName: "Stage Coach Lending",
+        loanAmount: 25000000,
         term: 340,
         estimatedRate: 350
     }, 6000)
@@ -102,7 +109,7 @@ function createQuotes() {
         requestorAddress: account,
         lenderAddress: account1,
         companyName: "Adam's Lending Emporium",
-        loanAmount: 250000000,
+        loanAmount: 25000000000000,
         term: 12,
         estimatedRate: 1550
     }, 500)
@@ -110,19 +117,19 @@ function createQuotes() {
     generateQuote({
         requestorAddress: account,
         lenderAddress: account2,
-        companyName: "Taco Bell",
-        loanAmount: 3000000,
-        term: 200,
-        estimatedRate: 1250
+        companyName: "Sondgeroth Mortgage",
+        loanAmount: 25000000,
+        term: 360,
+        estimatedRate: 250
     }, 1500)
 
     generateQuote({
         requestorAddress: account,
         lenderAddress: account3,
         companyName: "PGI Code Jammers",
-        loanAmount: 40000,
-        term: 120,
-        estimatedRate: 450
+        loanAmount: 40,
+        term: 1,
+        estimatedRate: 45000
     }, 7500)
 }
 
@@ -131,7 +138,7 @@ function watchForQuotes() {
     var intervalId = window.setInterval(
         function() {
             getCurrentQuotes();
-        }, 2000)
+        }, 500)
 }
 
 function getCurrentQuotes() {
@@ -187,7 +194,7 @@ function generateQuote(quote, timeOut) {
 function apply() {
     var meta = MortgageApp.deployed();
 
-    var loanAmount = 25500000;
+    var loanAmount = 25000000;
     var propertyType = 'Retail';
     var loanTerm = 360;
     var city = 'Des Moines';
@@ -202,7 +209,6 @@ function apply() {
         meta.getRequest.call(account, {
             from: account
         }).then(function(value) {
-            console.log(web3.toAscii(value[1]));
             watchForRequests();
         }).catch(function(e) {
             console.log(e);
@@ -296,6 +302,6 @@ $(document).ready(function() {
     $('#loan_to_value').val((loan_to_value_percent * 100).toFixed(2) + "%");
 
     $('.scrollspy').scrollSpy({
-        scrollOffset: 100
+        scrollOffset: 50
     });
 });

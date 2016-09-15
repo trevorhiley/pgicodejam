@@ -38,16 +38,17 @@ function addToQuotes(quote) {
 }
 
 function addQuoteToList(quote) {
-    var imageName = 'W301157';
+    var imageName = '';
+    var quoteCompanyName = quote.companyName.toString();
 
-    if (quote.companyName == "Adam's Lending Emporium") {
+    if (quoteCompanyName === "Adam's Lending Emporium") {
       imageName = 'W301157.jpg';
     }
 
 
     $("#noQuotes").hide();
     var first = '<li class="collection-item avatar animated slideInLeft">';
-    var image = '<img src="images/"' + imageName + ' alt="" class="circle">';
+    var image = '<img src="images/' + imageName + '" alt="" class="circle">';
     var title = '<span class="title">' + quote.companyName + '</span>';
     var details = '<p>Loan amount: ' + numeral(quote.loanAmount).format('$0,0.00') + '<br>Loan term: ' + quote.term + ' months<br>Estimated Rate:' + numeral(quote.estimatedRate * .0001).format('0.000%') + '</p>';
     var apply = '<a href="#!" class="secondary-content waves-effect waves-light btn orange animated infinite pulse" <i id="submitButton" class="" >Apply Now</i></a></li>';

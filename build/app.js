@@ -5697,7 +5697,7 @@ var SolidityEvent = require("web3/lib/web3/event.js");
     ],
     "unlinked_binary": "0x606060405260358060106000396000f36503063fc68da550606060405260e060020a600035046396e4ee3d81146024575b6007565b602435600435026060908152602090f3",
     "events": {},
-    "updated_at": 1473972937921,
+    "updated_at": 1474043798508,
     "links": {},
     "address": "0xcfeb869f69431e42cdb54a4f4f105c19c080a601"
   }
@@ -6287,7 +6287,7 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "type": "event"
       }
     },
-    "updated_at": 1473972937927,
+    "updated_at": 1474043798540,
     "links": {
       "ConvertLib": "0xcfeb869f69431e42cdb54a4f4f105c19c080a601"
     },
@@ -6827,7 +6827,7 @@ var SolidityEvent = require("web3/lib/web3/event.js");
     ],
     "unlinked_binary": "0x606060405260008054600160a060020a03191633179055610130806100246000396000f3606060405260e060020a60003504630900f010811461003c578063445df0ac146100c05780638da5cb5b146100c9578063fdacd576146100db575b005b61003a60043560008054600160a060020a039081163390911614156100bc57604080516001547ffdacd576000000000000000000000000000000000000000000000000000000008252600482015290518392600160a060020a0384169263fdacd5769260248281019392829003018183876161da5a03f115610002575050505b5050565b61010160015481565b610113600054600160a060020a031681565b61003a60043560005433600160a060020a03908116911614156100fe5760018190555b50565b60408051918252519081900360200190f35b60408051600160a060020a03929092168252519081900360200190f3",
     "events": {},
-    "updated_at": 1473972937931,
+    "updated_at": 1474043798571,
     "address": "0xe78a0f7e598cc8b0bb87894b0f60dd2a88d6a8ab",
     "links": {}
   }
@@ -7788,7 +7788,7 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "type": "event"
       }
     },
-    "updated_at": 1473972937947,
+    "updated_at": 1474043798638,
     "links": {},
     "address": "0xc89ce4735882c9f0f0fe26686c53074e09b0d550"
   }
@@ -44916,11 +44916,26 @@ function addToQuotes(quote) {
 
 function addQuoteToList(quote) {
     var imageName = '';
-    var quoteCompanyName = quote.companyName.toString();
 
-    if (quoteCompanyName == "Adam's Lending Emporium") {
+    if (quote.companyName.localeCompare("Adam's Lending Emporium") == 0) {
       imageName = 'W301157.jpg';
     }
+    else if (quote.companyName.localeCompare("The Other Guy") == 0) {
+      imageName = 'cashman.jpg';
+    }
+    else if (quote.companyName.localeCompare("Sondgeroth Mortgage") == 0) {
+      imageName = 'S023350.jpg';
+    }
+    else if (quote.companyName.localeCompare("Principal Real Estate Investors") == 0) {
+      imageName = 'principal.png';
+    }
+    else if (quote.companyName.localeCompare("Stage Coach Lending") == 0) {
+      imageName = 'stagecoach.jpg';
+    }
+    else if (quote.companyName.localeCompare("Tom's Giant Spinners") == 0) {
+      imageName = 'spinner.gif';
+    }
+
 
 
     $("#noQuotes").hide();
@@ -45004,7 +45019,7 @@ function createQuotes() {
     generateQuote({
         requestorAddress: account,
         lenderAddress: account3,
-        companyName: "PGI Code Jammers",
+        companyName: "Tom's Giant Spinners",
         loanAmount: 40,
         term: 1,
         estimatedRate: 45000

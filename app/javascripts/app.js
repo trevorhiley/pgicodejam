@@ -39,11 +39,26 @@ function addToQuotes(quote) {
 
 function addQuoteToList(quote) {
     var imageName = '';
-    var quoteCompanyName = quote.companyName.toString();
 
-    if (quoteCompanyName == "Adam's Lending Emporium") {
+    if (quote.companyName.localeCompare("Adam's Lending Emporium") == 0) {
       imageName = 'W301157.jpg';
     }
+    else if (quote.companyName.localeCompare("The Other Guy") == 0) {
+      imageName = 'cashman.jpg';
+    }
+    else if (quote.companyName.localeCompare("Sondgeroth Mortgage") == 0) {
+      imageName = 'S023350.jpg';
+    }
+    else if (quote.companyName.localeCompare("Principal Real Estate Investors") == 0) {
+      imageName = 'principal.png';
+    }
+    else if (quote.companyName.localeCompare("Stage Coach Lending") == 0) {
+      imageName = 'stagecoach.jpg';
+    }
+    else if (quote.companyName.localeCompare("Tom's Giant Spinners") == 0) {
+      imageName = 'spinner.gif';
+    }
+
 
 
     $("#noQuotes").hide();
@@ -127,7 +142,7 @@ function createQuotes() {
     generateQuote({
         requestorAddress: account,
         lenderAddress: account3,
-        companyName: "PGI Code Jammers",
+        companyName: "Tom's Giant Spinners",
         loanAmount: 40,
         term: 1,
         estimatedRate: 45000

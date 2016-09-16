@@ -5697,7 +5697,7 @@ var SolidityEvent = require("web3/lib/web3/event.js");
     ],
     "unlinked_binary": "0x606060405260358060106000396000f36503063fc68da550606060405260e060020a600035046396e4ee3d81146024575b6007565b602435600435026060908152602090f3",
     "events": {},
-    "updated_at": 1474043798508,
+    "updated_at": 1474044065172,
     "links": {},
     "address": "0xcfeb869f69431e42cdb54a4f4f105c19c080a601"
   }
@@ -6287,7 +6287,7 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "type": "event"
       }
     },
-    "updated_at": 1474043798540,
+    "updated_at": 1474044065201,
     "links": {
       "ConvertLib": "0xcfeb869f69431e42cdb54a4f4f105c19c080a601"
     },
@@ -6827,7 +6827,7 @@ var SolidityEvent = require("web3/lib/web3/event.js");
     ],
     "unlinked_binary": "0x606060405260008054600160a060020a03191633179055610130806100246000396000f3606060405260e060020a60003504630900f010811461003c578063445df0ac146100c05780638da5cb5b146100c9578063fdacd576146100db575b005b61003a60043560008054600160a060020a039081163390911614156100bc57604080516001547ffdacd576000000000000000000000000000000000000000000000000000000008252600482015290518392600160a060020a0384169263fdacd5769260248281019392829003018183876161da5a03f115610002575050505b5050565b61010160015481565b610113600054600160a060020a031681565b61003a60043560005433600160a060020a03908116911614156100fe5760018190555b50565b60408051918252519081900360200190f35b60408051600160a060020a03929092168252519081900360200190f3",
     "events": {},
-    "updated_at": 1474043798571,
+    "updated_at": 1474044065228,
     "address": "0xe78a0f7e598cc8b0bb87894b0f60dd2a88d6a8ab",
     "links": {}
   }
@@ -7788,7 +7788,7 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "type": "event"
       }
     },
-    "updated_at": 1474043798638,
+    "updated_at": 1474044065281,
     "links": {},
     "address": "0xc89ce4735882c9f0f0fe26686c53074e09b0d550"
   }
@@ -44987,7 +44987,7 @@ function createQuotes() {
         loanAmount: 23000000,
         term: 350,
         estimatedRate: 850
-    }, 4000)
+    }, 3000)
 
     generateQuote({
         requestorAddress: account,
@@ -44996,7 +44996,7 @@ function createQuotes() {
         loanAmount: 25000000,
         term: 340,
         estimatedRate: 350
-    }, 6000)
+    }, 1000)
 
     generateQuote({
         requestorAddress: account,
@@ -45023,7 +45023,7 @@ function createQuotes() {
         loanAmount: 40,
         term: 1,
         estimatedRate: 45000
-    }, 7500)
+    }, 1000)
 }
 
 function watchForQuotes() {

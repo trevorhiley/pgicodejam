@@ -110,7 +110,7 @@ function createQuotes() {
         loanAmount: 23000000,
         term: 350,
         estimatedRate: 850
-    }, 4000)
+    }, 3000)
 
     generateQuote({
         requestorAddress: account,
@@ -119,7 +119,7 @@ function createQuotes() {
         loanAmount: 25000000,
         term: 340,
         estimatedRate: 350
-    }, 6000)
+    }, 1000)
 
     generateQuote({
         requestorAddress: account,
@@ -146,7 +146,7 @@ function createQuotes() {
         loanAmount: 40,
         term: 1,
         estimatedRate: 45000
-    }, 7500)
+    }, 1000)
 }
 
 function watchForQuotes() {
